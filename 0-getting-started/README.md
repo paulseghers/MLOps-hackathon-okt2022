@@ -13,3 +13,5 @@ Using a personal email or twitter account that you already use is also fine, as 
 3) Go to your [twitter developper portal](https://developer.twitter.com/en/portal/dashboard) and click "Apply for elevated access"
 4) create a project
 ### 2- get reddit credentials
+
+## Setup a Google Cloud Platform account and project
