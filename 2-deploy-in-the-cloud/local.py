@@ -22,28 +22,29 @@ def train_model():
 
 
 def save_model(clf):
-    # with open("model.pkl", "wb") as fp:
-    #     pickle.dump(clf, fp)
-    clf_bytes = pickle.dumps(clf)
-    storage.Client().bucket("mybuck").blob("myblob").upload_from_string(clf_bytes)
+    with open("model.pkl", "wb") as fp:
+        pickle.dump(clf, fp)
+    # clf_bytes = pickle.dumps(clf)
+    # storage.Client().bucket("mybuck").blob("myblob").upload_from_string(clf_bytes)
 
 
 def load_model():
-    # with open("model.pkl", "rb") as fp:
-    #     clf = pickle.load(fp)
-    clf_bytes = storage.Client().bucket("mybuck").get_blob("myblob").download_as_bytes()
-    clf = pickle.loads(clf_bytes)
+    with open("model.pkl", "rb") as fp:
+        clf = pickle.load(fp)
+    # clf_bytes = storage.Client().bucket("mybuck").get_blob("myblob").download_as_bytes()
+    # clf = pickle.loads(clf_bytes)
     return clf
 
 
 def test_model(clf):
     sample = dict(zip(FEATURES, range(len(FEATURES))))
-    pred = clf.predict(pd.DataFrame([sample]))[0]
+    preds = clf.predict(pd.DataFrame([sample]))
+    print(list(preds))
 
 
 if __name__ == "__main__":
     build_dataset()
     clf = train_model()
-    # save_model(clf)
-    # clf = load_model()
+    save_model(clf)
+    clf = load_model()
     test_model(clf)
