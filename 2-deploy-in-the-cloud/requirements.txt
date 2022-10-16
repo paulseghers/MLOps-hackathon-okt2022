@@ -1,0 +1,4 @@
+pandas
+seaborn
+sklearn
+google-cloud-storage

@@ -1,0 +1,10 @@
+pyyaml
+pandas
+praw
+tweepy==4.10.1
+click
+pydantic
+fastapi
+uvicorn
+pandas-gbq
+functions-framework==3.*
