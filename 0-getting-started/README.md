@@ -15,3 +15,5 @@ Using a personal email or twitter account that you already use is also fine, as 
 ### 2- get reddit credentials
 
 ## Setup a Google Cloud Platform account and project
+### 1- Basics
+### 2- Download and configure the Google cloud CLI to interact with your project from a terminal
