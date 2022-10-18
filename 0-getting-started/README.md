@@ -33,8 +33,18 @@ You will need a reddit account, it can be created with any email.
 To get your credentials, the following guide works well:
 https://github.com/reddit-archive/reddit/wiki/OAuth2
 When asked to provide a "redirect uri", you can just put `http://localhost:8080`.<br>
-Here you don't need to save anything, once you've created an app with the above guide, all info will be stored on reddit in plaintext.
+Here you don't need to save anything, once you've created an app with the above guide, all info will be stored on your [apps dashboard](https://www.reddit.com/prefs/apps) on reddit in plaintext.
 ## Setup a Google Cloud Platform account and project
-### 1- Basics
+### 0- Intro
+Google cloud platform provides all the components you would expect a server or computer to have (environments to run code, networking, storage, databases, etc) in the form of *managed services*, where you as a developer don't need to worry about the details of how the services you need are implemented.<br><br>
 
-### 2- Download and configure the Google cloud CLI to interact with your project from a terminal
+To be able to collaborate on deploying your model and the associated automation code to the cloud, every team member should have a google account. <br>One team member should have a credit card that they are willing to provide Google with. No money will be charged from the card for this project, as you normally receive 300€ worth of Google Cloud credits upon starting, and we will be running services which don't typically cost that much, during a relatively short period of time.
+<br>
+
+### 1- Basics (only the "project owner" should do this)
+Navigate to https://console.cloud.google.com/ and click the dropdown list at the top right next to the Google Cloud logo. In the window that opens, click "new project" at the top. Name the project, don't give it an organisation name, and click create. Once it's ready and you can switch to it do so and this is where the fun begins.<br>
+In the search bar at the top, search "IAM and admin", or go to https://console.cloud.google.com/iam-admin/, and at the top click on "Grant Access", and add the emails of everyone in your team with the role "Owner".<br><br>
+Finally, try opening the tab for another service, or searching for a new one like "BigQuery", "Cloud Run", or "Cloud Storage" (all services we will use, though you can try something else) and open that service's start page.<br> When you start using a scalable service available in Google Cloud for the first time, you are prompted to "enable the API" for this service. The first time you enable the API for a service you will be be able to setup a payment method which is required to start a trial period with your free credits. You can later remove the payment method, and as long as you don't go over to 300 € limit, not a cent will be charged from your card.
+### 2- Download and configure the Google cloud CLI to interact with your project from a terminal (everyone should do this)
+As you might have noticed, the Google Cloud web console (UI) has all the information you need, but it is clunky and rather slow. We'll try to favor using the cloud command line interface, to configure and create the services we need. You can install it for your platform by following [this link](https://cloud.google.com/sdk/docs/install9).<br>
+In theory, everything that can be done from the web console can also be done from the CLI and vice versa. In practice, new services and objects are generally created from the web console, and the configuration of existing ones is done from the CLI. We will try to stick to this pattern during these tutorials.

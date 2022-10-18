@@ -26,7 +26,7 @@ gcloud run deploy <cloud run service name> \
     --region=us-central1 \
     --project=<project ID>
 
-api="https://paul-mlops-newsreader-25hmciganq-uc.a.run.app"
+api="https://paul-mlops-newsreader-25hmciganq-uc.a.run.app" #eample for mine
 # aussumes you are owner, or have cloud run invoker role
 token=$(gcloud auth print-identity-token)
 
