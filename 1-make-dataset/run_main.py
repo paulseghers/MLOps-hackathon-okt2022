@@ -22,7 +22,7 @@ def api_reddit(req: RedditRequest):
         for subr in req.subreddits:
             reddits += get_reddits(subr, req.feed, req.limit)
         df = reddits_to_df(reddits)
-        df.to_gbq(req.dest)
+        df.to_gbq(req.dest) #write to the Big Query bucket specified by dest. change if you want some other behavior.
     except Exception as e:
         return repr(e)
     return "OK"
