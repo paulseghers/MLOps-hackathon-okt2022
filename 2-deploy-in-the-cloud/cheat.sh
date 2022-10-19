@@ -3,7 +3,7 @@ python local.py
 
 
 # run des nuaj
-runner_sa=paul-mlops@m4h-info.iam.gserviceaccount.com
+runner_sa=your-service-account
 model_svc=paul-mlops-model
 model_img=gcr.io/m4h-info/paul-mlops-model
 

@@ -16,7 +16,6 @@ runner_sa=<email of the service acc you created with permissions>
 newsreader_svc=<ID of the news reader cloud run service>
 newsreader_img=gcr.io/<your gcp project>/<docker image name>
 
-# on peut run ca dans cloud shell pour pas avoir a setup trop de trucs
 gcloud builds submit . -t <image name>
 gcloud run deploy <cloud run service name> \
     --image=$newsreader_img \
@@ -26,7 +25,7 @@ gcloud run deploy <cloud run service name> \
     --region=us-central1 \
     --project=<project ID>
 
-api="https://paul-mlops-newsreader-25hmciganq-uc.a.run.app" #eample for mine
+api="https://paul-mlops-newsreader-25hmciganq-uc.a.run.app" #example for mine
 # aussumes you are owner, or have cloud run invoker role
 token=$(gcloud auth print-identity-token)
 
