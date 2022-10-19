@@ -34,5 +34,41 @@ gcloud run deploy model-v1 \
 -->
 
 
-3. In the Cloud Run menu, find
-4. Now, we are ready to interact with it using an API
+3. In the Cloud Run menu, find the api endpoint (url) for the cloud Run you just created. Now, we are ready to interact with it using an API.
+4. Again, get your identity token, api, etc:
+```
+export api=$(gcloud run services describe <model service name> --region us-central1 --format 'value(status.url)')
+export token=$(gcloud auth print-identity-token)
+```
+Here, we also need to define locations for saving the model to and loading the datatset from. To build our API call, we can do the following
+```
+export dataset=<URI of your datatset file>
+export model=<uri of your model>
+```
+I tested with the example dataset: `gs://mlops-hackathon-paul/iris.csv`. You can get the URIs for your objects inside Cloud Store by right clicking the three dots at the end of the line an object is on.
+
+**DISCLAIMER**: I'm not very good at writing APIs for Machine Learning models...so in the example I gave we need to pass a payload of the features we want to train on. This is done as follows (for this example):
+```
+export train_payload=$(cat <<EOF
+{
+    "dataset": "$dataset",
+    "model": "$model",
+    "features": ["sepal_length", "sepal_width", "petal_length", "petal_width"],
+    "target": "species"
+}
+EOF
+)
+```
+5. Now we can call:
+```
+curl $api/train \
+    -XPOST -H 'content-type: application/json' \
+    -H "Authorization: Bearer $token" \
+    -d "$train_payload"
+```
+And check that the file `model.plk` in our Cloud Storage has in fact been populated by a blob of our model.<br>
+If it didn't happen, check instead the logs of
+<br>
+The functions `load_model` and `save_model` from `run_api.py` will be of particular interest. Take a look at the functions from the `google.cloud.storage` python module. Here we put a blob of the model in a Cloud Storage object, but this could also be done with a plot, the output of the model, a dump of hyperparameters, etc.
+
+### Can also be done using cloud functions. These have a shorter feedback loop in development than Cloud run, but they have the disadvantage that for larger pieces of code, development can be a pain, as code that runs in Cloud Run can be run locally in a Docker container with the same environment.
