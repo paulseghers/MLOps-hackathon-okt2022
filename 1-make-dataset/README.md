@@ -90,7 +90,7 @@ curl $api/twitter \
     -d '{"dest": "news_articles_1.twitter_1", "accounts": ["BBCBreaking", "washingtonpost"]}'
 ```
 You can see how the beavior upon reaching an endpoint is defined in the file `run_main.py`.<br>
-It is purposefully still very vanilla, as the idea is that you can modify the way pandas dataframe functions are used to suit your MLOps needs: for example, do you want to have a single table, or create a new one with each run to train the model? Do you want different datasets for different sets of accounts? How do you want to organise your data? This will all depend on your choice of models in the next part. _Remember:_ run `gcloud builds submit .... ` again when you modify the code, as this is where the "upload" of sorts takes place.
+It is purposefully still very vanilla, as the idea is that you can modify the way pandas dataframe functions are used to suit your MLOps needs: for example, do you want to have a single table, or create a new one with each run to train the model? Do you want different datasets for different sets of accounts? How do you want to organise your data? This will all depend on your choice of models in the next part. _Remember:_ run `gcloud builds submit... ` again when you modify the code, as this is where the "upload" of sorts takes place.
 <!---
 my own one when testing looks like this
 gcloud run deploy newsreader-service \

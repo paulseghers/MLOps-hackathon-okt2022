@@ -18,13 +18,13 @@ app = FastAPI()
 
 def save_model(clf, model_path):
     clf_bytes = pickle.dumps(clf)
-    bucket, path = re.match(r"gs://([^/]+)/(.+)", model_path)
+    bucket, path = re.match(r"gs://([^/]+)/(.+)", model_path).groups()
     storage.Client().bucket(bucket).blob(path).upload_from_string(clf_bytes)
 
 
 @cache
 def load_model(model_path):
-    bucket, path = re.match(r"gs://([^/]+)/(.+)", model_path)
+    bucket, path = re.match(r"gs://([^/]+)/(.+)", model_path).groups()
     clf_bytes = storage.Client().bucket(bucket).blob(path).download_as_bytes()
     clf = pickle.loads(clf_bytes)
     return clf

@@ -72,3 +72,5 @@ If it didn't happen, check instead the logs of
 The functions `load_model` and `save_model` from `run_api.py` will be of particular interest. Take a look at the functions from the `google.cloud.storage` python module. Here we put a blob of the model in a Cloud Storage object, but this could also be done with a plot, the output of the model, a dump of hyperparameters, etc.
 
 ### Can also be done using cloud functions. These have a shorter feedback loop in development than Cloud run, but they have the disadvantage that for larger pieces of code, development can be a pain, as code that runs in Cloud Run can be run locally in a Docker container with the same environment.
+
+Try making a cloud function which also authenticates with an object in Cloud store using the same functions.
