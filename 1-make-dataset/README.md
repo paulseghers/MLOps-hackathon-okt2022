@@ -30,7 +30,7 @@ will take news headlines from the twitter accounts [BBC Breaking News](https://t
 ## 2- Running it in the Cloud
 We will deploy a Cloud Run service which can do the above and be accessed through a basic API server. Basically, we want a service we can send requests to in order to return the datasets.
 1. Create a BigQuery ressource, and a dataset in it. When prompted with the location, pick `eu-west-something` or `eu-north-something` if you want your own waiting time when looking at the data to be short, But `us-central-1` if you want the code to have low latency (the code will be run in that region because it's the cheapest datacenter), though this doesn't really matter that much.
-3. create a service account with the following roles, and note down its name:
+3. create a service account with the following roles, and note down its name: (In `Credentials`)
     - `BigQuery Data Owner`
     - `BigQuery Job User`
     - `Storage Object Admin`
